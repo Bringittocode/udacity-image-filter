@@ -2,13 +2,13 @@ import { Router, Request, Response } from 'express';
 import { deleteLocalFiles } from '../../../util/util';
 
 //@TODO
-// import { requireAuth } from './auth';
+import { requireAuth } from './auth';
 
 import { FilteredImage } from './filteredimage';
 
 const router: Router = Router();
 
-router.get('/filteredimage', async (req: Request, res: Response) => {
+router.get('/filteredimage', requireAuth, async (req: Request, res: Response) => {
     
     const image_url: string = req.query.image_url;
 
