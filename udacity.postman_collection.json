@@ -26,13 +26,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://udacity-image-filter-dev.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
+					"raw": "http://{{EB_URL}}/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
 					"protocol": "http",
 					"host": [
-						"udacity-image-filter-dev",
-						"us-east-1",
-						"elasticbeanstalk",
-						"com"
+						"{{EB_URL}}"
 					],
 					"path": [
 						"filteredimage"
@@ -70,13 +67,8 @@
 	],
 	"variable": [
 		{
-			"key": "host",
-			"value": "http://udacity-image-filter-dev.us-east-1.elasticbeanstalk.com/",
-			"type": "default"
-		},
-		{
-			"key": "version",
-			"value": "v1",
+			"key": "EB_URL",
+			"value": "udacity-image-filter-dev.us-east-1.elasticbeanstalk.com",
 			"type": "default"
 		}
 	]
