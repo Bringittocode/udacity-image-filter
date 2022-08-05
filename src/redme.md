@@ -1,9 +1,5 @@
-I try the api with different image URL, some are very slow to load and some are fast. I do not know why.
+elasticbeanstalk URL: udacity-image-filter-dev.us-east-1.elasticbeanstalk.com
 
-eg. wikipedia image is very slow, it take ages to load finish.
-https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png
+image filter endpoint: http://udacity-image-filter-dev.us-east-1.elasticbeanstalk.com/api/v1/image/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg
 
-but another image i tired was
-https://www.blog.bringittocode.org/api/images/editor-get-started.png
-
-and it was very fast.
+could not add a custom domain because route53 does not allow it.

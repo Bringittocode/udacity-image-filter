@@ -26,7 +26,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://udacity.bringittocode.org/api/v1/image/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
+					"raw": "http://udacity-image-filter-dev.us-east-1.elasticbeanstalk.com/api/v1/image/filteredimage?image_url=https://upload.wikimedia.org/wikipedia/commons/b/bd/Golden_tabby_and_white_kitten_n01.jpg",
 					"protocol": "http",
 					"host": [
 						"udacity",
@@ -73,7 +73,7 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "http://udacity.bringittocode.org/",
+			"value": "http://udacity-image-filter-dev.us-east-1.elasticbeanstalk.com/",
 			"type": "default"
 		},
 		{
