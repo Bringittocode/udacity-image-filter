@@ -18,6 +18,12 @@ import { filterImageFromURL } from '../../util/util';
 export async function FilteredImage(image_url:string): Promise<string>{
     return new Promise((resolve, reject) => {
         // 1. validate the image_url query
+
+        if(image_url == undefined || image_url == '') reject({
+            status: "failed",
+            message: "image_url parameter is missing"
+        });
+
         const testUrl: boolean = /^http.+(png|jpeg|jpg)$/.test(image_url);
         if(testUrl){
             // 2. call filterImageFromURL(image_url) to filter the image

@@ -42,6 +42,13 @@ import bodyParser from 'body-parser';
         })
     });
 
+    app.use(function (req: Request, res: Response) {
+        res.status(404).send({
+            status: "failed",
+            message: "Requested api route could not found"
+        })
+    })
+
     // Root Endpoint
     // Displays a simple message to the user
     app.get("/", async (req, res) => {
