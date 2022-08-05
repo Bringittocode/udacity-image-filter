@@ -1,23 +1,32 @@
-// import * as jwt from 'jsonwebtoken';
-// import { Router, Request, Response } from 'express';
-// import { NextFunction } from 'connect';
-// import dotenv from "dotenv";
+import * as jwt from 'jsonwebtoken';
+import { Request, Response } from 'express';
+import { NextFunction } from 'connect';
+import dotenv from "dotenv";
 
-// dotenv.config();
+dotenv.config();
 
-// function auth(token: string){
-//     jwt.sign()
-// }
+// generate authorization header
+function auth(token: string){
+    return jwt.sign(token, process.env.AUTH)
+} 
 
-// export function requireAuth(req: Request, res: Response, next: NextFunction) {
-//     if (!req.headers || !req.headers.authorization){
-//         return res.status(401).send({ message: 'No authorization headers.' });
-//     }
+export function requireAuth(req: Request, res: Response, next: NextFunction) {
+    console.log(req.headers);
+    if (!req.headers || !req.headers.auth){
+        return res.status(500).send({
+            status: "failed",
+            message: 'No authorization header.' 
+        });
+    }
 
-//     if (req.headers.authorization == process.env.auth){
-//         return next();
-//     }
-//     else{
-//         return res.status(500).send({ auth: false, message: 'Failed to authenticate.' });
-//     }
-// }
+    const token: string = req.headers.auth as string;
+
+    return jwt.verify(token, process.env.AUTH, (err, decoded)=>{
+        if(err) return res.status(500).send({
+            status: "failed",
+            message: 'Failed to authenticate' 
+        });
+
+        return next();
+    })
+}
