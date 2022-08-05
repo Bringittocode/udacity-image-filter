@@ -1,6 +1,12 @@
 import express from 'express';
 
-import { API_V1_Router } from './controller/v1/index.router';
+import { Request, Response } from 'express';
+
+import { requireAuth } from './controller/images/auth';
+
+import { FilteredImage } from './controller/images/filteredimage';
+
+import { deleteLocalFiles } from './util/util';
 
 import bodyParser from 'body-parser';
 
@@ -12,18 +18,34 @@ import bodyParser from 'body-parser';
     app.use(bodyParser.json());
 
     //CORS Should be restricted
-    //General CORS for all API version
     app.use(function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "http://localhost:8100");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
         next();
     });
 
-    app.use('/api/v1/', API_V1_Router)
+    app.get('/filteredimage', requireAuth, async (req: Request, res: Response) => {
+        
+        const image_url: string = req.query.image_url;
+
+        const image = FilteredImage(image_url);
+
+        image
+        .then(response=>{
+            res.sendFile(response, function(error){
+                // 4. deletes any files on the server on finish of the response
+                deleteLocalFiles([response]);
+            });
+        })
+        .catch(error=>{
+            res.status(400).send(error)
+        })
+    });
 
     // Root Endpoint
     // Displays a simple message to the user
     app.get("/", async (req, res) => {
-        res.send("current api version is V1 you can try /api/v1/path");
+        res.send("Add this path /filteredimage?image_url=IMAGE_URL");
     });
 
 

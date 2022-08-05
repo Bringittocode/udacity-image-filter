@@ -1,4 +1,4 @@
-import { filterImageFromURL } from '../../../util/util';
+import { filterImageFromURL } from '../../util/util';
 
 // @TODO1 IMPLEMENT A RESTFUL ENDPOINT
 // GET /filteredimage?image_url={{URL}}

@@ -11,7 +11,7 @@ function auth(token: string){
 } 
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
-    console.log(req.headers);
+
     if (!req.headers || !req.headers.auth){
         return res.status(500).send({
             status: "failed",
